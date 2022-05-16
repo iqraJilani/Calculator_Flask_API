@@ -20,7 +20,7 @@ def calculate():
     if np_data:
         math_obj = calculate.Basic_Math(a, b)
     else:
-        math_obj = calculate.np_math(a, b)
+        math_obj = calculate.Np_Math(a, b)
 
 
     if opr == "+":
