@@ -1,6 +1,6 @@
 from flask import Flask, request
-from src import basic_math.py as bm
-from src import np_math.py as nm
+from src import calculate
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -16,18 +16,18 @@ def calculate(methods=["POST"]):
     np_data = data["np_data"]
 
     if np_data:
-        math_obj = bm(a, b)
+        math_obj = calculate.Basic_Math(a, b)
     else:
-        math_obj = nm(a,b)
+        math_obj = calculate.np_math(a,b)
     if opr == "+":
-        result = math_obj.add()
+        result = math_obj.add(a, b)
         return result
     elif opr == "-":
-        return math_obj.subtract()
+        return math_obj.subtract(a, b)
     elif opr == "*":
-        return math_obj.mult()
+        return math_obj.multiply(a, b)
     elif opr =="/":
-        return math_obj.divide()
+        return math_obj.divide(a, b)
 
 
 if __name__ == '__main__':
