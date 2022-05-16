@@ -73,7 +73,7 @@ class Basic_Math:
 
 
 
-class np_mathb(Basic_Math):
+class np_math(Basic_Math):
     """
     This class performs mathemtical operations on array and matrix data
 
