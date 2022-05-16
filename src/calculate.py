@@ -1,7 +1,8 @@
 import numpy as np
 
+
 class Basic_Math:
-    """ This class performs basic math operations (selected by user)  on operands given.
+    """This class performs basic math operations (selected by user)  on operands given.
     For example,
     a = 5, b = 2
     operation = "addition"
@@ -10,7 +11,6 @@ class Basic_Math:
 
     def __init__(self):
         print("")
-
 
     def add(self, a, b):
         """
@@ -26,7 +26,6 @@ class Basic_Math:
         """
         return a + b
 
-
     def subtract(self, a, b):
         """
         Parameters
@@ -37,8 +36,7 @@ class Basic_Math:
         Returns: numerical difference of a and b. For example subtract(5, 2) returns 3.
         -------
         """
-        return a-b
-
+        return a - b
 
     def multiply(self, a, b):
         """
@@ -51,7 +49,6 @@ class Basic_Math:
         -------
         """
         return a * b
-
 
     def divide(self, a, b):
         """
@@ -66,14 +63,13 @@ class Basic_Math:
 
         """
         try:
-            result = a /b
+            result = a / b
             return result
         except ZeroDivisionError:
             print(f"You are trying to divide {a} by zero which is not allowed")
 
 
-
-class np_math(Basic_Math):
+class Np_Math(Basic_Math):
     """
     This class performs mathemtical operations on array and matrix data
 
@@ -81,7 +77,6 @@ class np_math(Basic_Math):
 
     def __init__(self):
         print("")
-
 
     def add(self, a, b):
         """
@@ -98,11 +93,10 @@ class np_math(Basic_Math):
         try:
             a = np.array(a)
             b = np.array(b)
-            result = a +b
+            result = a + b
             return result
         except ValueError as e:
             return e
-
 
     def subtract(self, a, b):
         """
@@ -119,11 +113,10 @@ class np_math(Basic_Math):
         try:
             a = np.array(a)
             b = np.array(b)
-            result = a -b
+            result = a - b
             return result
         except ValueError as e:
             return e
-
 
     def multiply(self, a, b):
         """
@@ -146,7 +139,6 @@ class np_math(Basic_Math):
         except ValueError as e:
             return e
 
-
     def divide(self, a, b):
         """
         Parameters
@@ -164,5 +156,3 @@ class np_math(Basic_Math):
             return result
         except ValueError as e:
             return e
-
-
