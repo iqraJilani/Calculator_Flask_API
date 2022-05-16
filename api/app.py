@@ -4,13 +4,13 @@ from src import calculate
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route('/')
 def index():
     return "Welcome to Calculator app"
 
 
-@app.route("/calculate")
-def calculate(methods=["POST"]):
+@app.route('/calculate', methods=["POST"])
+def calculate():
     data = request.json
     a = data["op1"]
     b = data["op2"]
