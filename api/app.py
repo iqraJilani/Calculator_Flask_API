@@ -1,5 +1,5 @@
-from flask import Flask, request
-from src import calculate
+from flask import Flask, request, jsonify
+from src.calculate import Np_Math, Basic_Math
 
 app = Flask(__name__)
 
@@ -18,23 +18,27 @@ def calculate():
     np_data = data["np_data"]
 
     if np_data:
-        math_obj = calculate.Basic_Math(a, b)
+        math_obj = Np_Math()
     else:
-        math_obj = calculate.Np_Math(a, b)
+        math_obj = Basic_Math()
 
 
     if opr == "+":
         result = math_obj.add(a, b)
-        return result
     elif opr == "-":
-        return math_obj.subtract(a, b)
+        result =  math_obj.subtract(a, b)
     elif opr == "*":
-        return math_obj.multiply(a, b)
+        result =  math_obj.multiply(a, b)
     elif opr == "/":
-        return math_obj.divide(a, b)
+        result =  math_obj.divide(a, b)
+
+    ans_dict = {"ans": result}
+    return jsonify(ans_dict)
 
 
 if __name__ == "__main__":
     # run() method of Flask class runs the application
     # on the local development server.
+
+
     app.run()

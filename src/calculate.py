@@ -74,9 +74,9 @@ class Np_Math(Basic_Math):
     This class performs mathemtical operations on array and matrix data
 
     """
-
     def __init__(self):
         print("")
+
 
     def add(self, a, b):
         """
@@ -93,10 +93,10 @@ class Np_Math(Basic_Math):
         try:
             a = np.array(a)
             b = np.array(b)
-            result = a + b
+            result = (a + b).tolist()
             return result
         except ValueError as e:
-            return e
+            return str(e)
 
     def subtract(self, a, b):
         """
@@ -113,10 +113,10 @@ class Np_Math(Basic_Math):
         try:
             a = np.array(a)
             b = np.array(b)
-            result = a - b
+            result = (a - b).tolist()
             return result
         except ValueError as e:
-            return e
+            return str(e)
 
     def multiply(self, a, b):
         """
@@ -128,16 +128,23 @@ class Np_Math(Basic_Math):
         Returns: type = numpy array or matrix, result of matrix or element wise multiplication of arguments given.
         -------
         """
+        # try:
+        #     a = np.array(a)
+        #     b = np.array(b)
+        #     if len(a.shape) and len(b.shape) == 1:
+        #         result = (np.multiply(a, b)).tolist()
+        #     else:
+        #         result = (np.dot(a, b)).tolist()
+        #     return result
+        # except ValueError as e:
+        #     return str(e)
         try:
             a = np.array(a)
             b = np.array(b)
-            if len(a.shape) and len(b.shape) == 1:
-                result = np.multiply(a, b)
-            else:
-                result = np.dot(a, b)
+            result = (np.dot(a, b)).tolist()
             return result
         except ValueError as e:
-            return e
+            return str(e)
 
     def divide(self, a, b):
         """
@@ -152,7 +159,7 @@ class Np_Math(Basic_Math):
         try:
             a = np.array(a)
             b = np.array(b)
-            result = a / b
+            result = (a / b).tolist()
             return result
         except ValueError as e:
-            return e
+            return str(e)
