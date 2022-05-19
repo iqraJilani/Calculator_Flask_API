@@ -74,9 +74,9 @@ class Np_Math(Basic_Math):
     This class performs mathemtical operations on array and matrix data
 
     """
+
     def __init__(self):
         print("")
-
 
     def add(self, a, b):
         """
