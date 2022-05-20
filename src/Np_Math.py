@@ -1,4 +1,3 @@
-
 from .Basic_Math import BasicMath
 import numpy as np
 
@@ -74,7 +73,7 @@ class NpMath(BasicMath):
 
         return result
 
-    def multiply(self,np_data, op1=None, op2=None):
+    def multiply(self, np_data, op1=None, op2=None):
         """
         Parameters
         ----------
@@ -102,7 +101,7 @@ class NpMath(BasicMath):
                 result = BasicMath.format_results(str(e))
         return result
 
-    def divide(self,np_data, op1=None, op2=None):
+    def divide(self, np_data, op1=None, op2=None):
         """
         Parameters
         ----------

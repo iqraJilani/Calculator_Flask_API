@@ -8,6 +8,7 @@ app = Flask(__name__)
 math_obj = None
 np_data = None
 
+
 @app.route("/")
 def index():
     return "Welcome to Calculator app"
