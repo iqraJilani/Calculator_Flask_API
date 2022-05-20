@@ -10,72 +10,88 @@ class BasicMath:
     addition(a, b)
     """
 
-    def __init__(self):
-        print("")
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
 
-    @classmethod
-    def format_results(cls, result):
+    @staticmethod
+    def format_results(result):
         ans_dict = {"ans": result}
         return jsonify(ans_dict)
 
-    def add(self, a, b):
+    def add(self, op1=None, op2=None):
         """
-
         Parameters
         ----------
-        a : type= num,  first operand for addition operation
-        b : type= num,  second operand for addition  operation
+        op1 : type= num,  first operand for addition operation
+        op2 : type= num,  second operand for addition  operation
 
-        Returns: numerical sum of a and b. For example add(5, 2) returns 7.
+        Returns: jsonfied numerical sum of a and b. For example add(5, 2) returns 7.
         -------
 
         """
-        result = a + b
-        return jsonify(result)
+        if op1 is not None:
+            self.a = op1
+        if op2 is not None:
+            self.b = op1
 
-    def subtract(self, a, b):
+        result = self.a + self.b
+        return BasicMath.format_results(result)
+
+    def subtract(self, op1=None, op2=None):
         """
         Parameters
         ----------
-        a : type= num,  first operand for subtraction operation
-        b : type= num,  second operand for subtraction  operation
+        op1 : type= num,  first operand for subtraction operation
+        op2 : type= num,  second operand for subtraction  operation
 
         Returns: numerical difference of a and b. For example subtract(5, 2) returns 3.
         -------
         """
-        result = a - b
-        return jsonify(result)
+        if op1 is not None:
+            self.a = op1
+        if op2 is not None:
+            self.b = op1
 
-    def multiply(self, a, b):
+        result = self.a - self.b
+        return BasicMath.format_results(result)
+
+    def multiply(self, op1=None, op2=None):
         """
         Parameters
         ----------
-        a : type= num,  first operand for multiplication operation
-        b : type= num,  second operand for multiplication  operation
+        op1 : type= num,  first operand for multiplication operation
+        op2 : type= num,  second operand for multiplication  operation
 
         Returns: type= num, umerical product of a and b. For example, multiply(5, 2) return 10.
         -------
         """
-        result = a * b
-        return jsonify(result)
+        if op1 is not None:
+            self.a = op1
+        if op2 is not None:
+            self.b = op1
 
-    def divide(self, a, b):
+        result = self.a * self.b
+        return BasicMath.format_results(result)
+
+    def divide(self, op1=None, op2=None):
         """
 
         Parameters
         ----------
-        a: type=num, first operand for division operation
-        b: type=num, second operand for division operation, must be greater than zero otherwise ZeroDivisionError exception is raised
+        op1: type=num, first operand for division operation
+        op2: type=num, second operand for division operation, must be greater than zero otherwise ZeroDivisionError exception is raised
 
         Returns: quotient of division of a by b
         -------
 
         """
+        if op1 is not None:
+            self.a = op1
+        if op2 is not None:
+            self.b = op1
         try:
-            result = a / b
-            return jsonify(result)
+            result = self.a / self.b
+            return BasicMath.format_results(result)
         except ZeroDivisionError:
-            print(f"You are trying to divide {a} by zero which is not allowed")
-
-
-
+            print(f"You are trying to divide {self.a} by zero which is not allowed")

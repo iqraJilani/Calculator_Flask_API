@@ -5,11 +5,8 @@ from flask import g
 
 app = Flask(__name__)
 
-a = None
-b = None
-np_data = None
 math_obj = None
-
+np_data = None
 
 @app.route("/")
 def index():
@@ -19,42 +16,73 @@ def index():
 @app.route("/initialize", methods=["POST"])
 def initialize():
     data = request.json
-    global a
     a = data["op1"]
-    global b
     b = data["op2"]
     global np_data
     np_data = data["np_data"]
     global math_obj
-    math_obj = NpMath(np_data)
+    math_obj = NpMath(a, b)
     return jsonify({"result": "Initialized Successfully"})
 
 
-@app.route("/addition", methods=["GET"])
+@app.route("/addition", methods=["GET", "POST"])
 def addition():
 
-    result = math_obj.add(a, b)
+    if request.method == "GET":
+        global np_data
+        result = math_obj.add(np_data)
+    else:
+        data = request.json
+        a = data["op1"]
+        b = data["op2"]
+        np_data = data["np_data"]
+        result = math_obj.add(np_data, a, b)
+
     return result
 
 
-@app.route("/subtraction", methods=["GET"])
+@app.route("/subtraction", methods=["GET", "POST"])
 def subtraction():
 
-    result = math_obj.subtract(a, b)
+    if request.method == "GET":
+        global np_data
+        result = math_obj.add(np_data)
+    else:
+        data = request.json
+        a = data["op1"]
+        b = data["op2"]
+        np_data = data["np_data"]
+        result = math_obj.subtract(np_data, a, b)
     return result
 
 
-@app.route("/multiplication", methods=["GET"])
+@app.route("/multiplication", methods=["GET", "POST"])
 def multiplication():
 
-    result = math_obj.multiply(a, b)
+    if request.method == "GET":
+        global np_data
+        result = math_obj.add(np_data)
+    else:
+        data = request.json
+        a = data["op1"]
+        b = data["op2"]
+        np_data = data["np_data"]
+        result = math_obj.multiply(np_data, a, b)
     return result
 
 
-@app.route("/division", methods=["GET"])
+@app.route("/division", methods=["GET", "POST"])
 def division():
 
-    result = math_obj.subtract(a, b)
+    if request.method == "GET":
+        global np_data
+        result = math_obj.add()
+    else:
+        data = request.json
+        a = data["op1"]
+        b = data["op2"]
+        np_data = data["np_data"]
+        result = math_obj.divide(np_data, a, b)
     return result
 
 
