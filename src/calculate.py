@@ -1,4 +1,5 @@
 import numpy as np
+from flask import jsonify
 
 
 class Basic_Math:
@@ -12,6 +13,11 @@ class Basic_Math:
     def __init__(self):
         print("")
 
+    @classmethod
+    def format_results(cls, result):
+        ans_dict = {"ans": result}
+        return jsonify(ans_dict)
+
     def add(self, a, b):
         """
 
@@ -24,7 +30,8 @@ class Basic_Math:
         -------
 
         """
-        return a + b
+        result = a + b
+        return jsonify(result)
 
     def subtract(self, a, b):
         """
@@ -36,7 +43,8 @@ class Basic_Math:
         Returns: numerical difference of a and b. For example subtract(5, 2) returns 3.
         -------
         """
-        return a - b
+        result = a - b
+        return jsonify(result)
 
     def multiply(self, a, b):
         """
@@ -48,7 +56,8 @@ class Basic_Math:
         Returns: type= num, umerical product of a and b. For example, multiply(5, 2) return 10.
         -------
         """
-        return a * b
+        result = a * b
+        return jsonify(result)
 
     def divide(self, a, b):
         """
@@ -64,7 +73,7 @@ class Basic_Math:
         """
         try:
             result = a / b
-            return result
+            return jsonify(result)
         except ZeroDivisionError:
             print(f"You are trying to divide {a} by zero which is not allowed")
 
@@ -75,8 +84,8 @@ class Np_Math(Basic_Math):
 
     """
 
-    def __init__(self):
-        print("")
+    def __init__(self, np_data):
+        self.np_data = np_data
 
     def add(self, a, b):
         """
@@ -90,13 +99,16 @@ class Np_Math(Basic_Math):
         -------
 
         """
-        try:
-            a = np.array(a)
-            b = np.array(b)
-            result = (a + b).tolist()
-            return result
-        except ValueError as e:
-            return str(e)
+        if not self.np_data:
+            return super.add(a, b)
+        else:
+            try:
+                a = np.array(a)
+                b = np.array(b)
+                result = (a + b).tolist()
+                return jsonify(result)
+            except ValueError as e:
+                return jsonify(str(e))
 
     def subtract(self, a, b):
         """
@@ -110,13 +122,16 @@ class Np_Math(Basic_Math):
         -------
 
         """
-        try:
-            a = np.array(a)
-            b = np.array(b)
-            result = (a - b).tolist()
-            return result
-        except ValueError as e:
-            return str(e)
+        if not self.np_data:
+            return super.subtract(a, b)
+        else:
+            try:
+                a = np.array(a)
+                b = np.array(b)
+                result = (a - b).tolist()
+                return jsonify(result)
+            except ValueError as e:
+                return jsonify(str(e))
 
     def multiply(self, a, b):
         """
@@ -138,13 +153,16 @@ class Np_Math(Basic_Math):
         #     return result
         # except ValueError as e:
         #     return str(e)
-        try:
-            a = np.array(a)
-            b = np.array(b)
-            result = (np.dot(a, b)).tolist()
-            return result
-        except ValueError as e:
-            return str(e)
+        if not self.np_data:
+            return super.multiply(a, b)
+        else:
+            try:
+                a = np.array(a)
+                b = np.array(b)
+                result = (np.dot(a, b)).tolist()
+                return jsonify(result)
+            except ValueError as e:
+                return jsonify(str(e))
 
     def divide(self, a, b):
         """
@@ -156,10 +174,13 @@ class Np_Math(Basic_Math):
         Returns: type = numpy array or matrix, division result of arguments given
         -------
         """
-        try:
-            a = np.array(a)
-            b = np.array(b)
-            result = (a / b).tolist()
-            return result
-        except ValueError as e:
-            return str(e)
+        if not self.np_data:
+            return super.divide(a, b)
+        else:
+            try:
+                a = np.array(a)
+                b = np.array(b)
+                result = (a / b).tolist()
+                return jsonify(result)
+            except ValueError as e:
+                return jsonify(str(e))
